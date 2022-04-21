@@ -4,6 +4,8 @@ Official PyTorch implementation of [Ensemble of Averages](https://arxiv.org/pdf/
 
 This repository is built upon the [DomainBed](https://github.com/facebookresearch/DomainBed) repository by FAIR.
 
+![Alt text](images/EoA_table.png?raw=true "Peformance Table from our paper")
+
 ## Environment:
 ```
 	Python: 3.6.8
