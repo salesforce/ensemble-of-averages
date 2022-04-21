@@ -50,4 +50,10 @@ python -m domainbed.scripts.sweep launch --data_dir path/to/data --output_dir er
 ### Ensemble of Averages (EoA)
 We now use the best SMA models saved from the above runs (using in-domain validation accuracy based early stopping) in an ensemble, that we call EoA since these ensembles contain moving average models.
 
+TIP: Use larger values of `num_workers` and `batch_size` for faster runtime.
+
+```
+python -m domainbed.EoA --data_dir /export/share/datasets/vision/domain-gen/PACS/kfold/ --dataset PACS --output_dir erm-sma_resnet50/pacs --hparams '{"num_workers": 1, "batch_size": 128}'
+```
+
 
