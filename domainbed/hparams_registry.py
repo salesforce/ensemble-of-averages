@@ -28,7 +28,7 @@ def _hparams(algorithm, dataset, random_seed):
     # Unconditional hparam definitions.
 
     _hparam('data_augmentation', True, lambda r: True)
-    _hparam('resnet18', False, lambda r: False)
+    _hparam('arch', 'resnet50', lambda r: 'resnet50')
     _hparam('resnet_dropout', 0., lambda r: r.choice([0., 0.1, 0.5]))
     _hparam('class_balanced', False, lambda r: False)
     # TODO: nonlinear classifiers disabled
@@ -162,6 +162,15 @@ def _hparams(algorithm, dataset, random_seed):
         _hparam('weight_decay_g', 0., lambda r: 0.)
     elif algorithm in ['DANN', 'CDANN']:
         _hparam('weight_decay_g', 0., lambda r: 10**r.uniform(-6, -2))
+
+    ### hyper-params used in our experiments
+    del hparams['batch_size']
+    del hparams['lr']
+    del hparams['weight_decay'],
+    _hparam('batch_size', 32, lambda r: 32)
+    _hparam('lr', 5e-5, lambda r: 5e-5)
+    _hparam('weight_decay', 0, lambda r: 10**r.uniform(-6, -4))
+
 
     return hparams
 
