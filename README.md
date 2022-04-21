@@ -58,4 +58,17 @@ TIP: Use larger values of `num_workers` and `batch_size` for faster runtime.
 python -m domainbed.EoA --data_dir /export/share/datasets/vision/domain-gen/PACS/kfold/ --dataset PACS --output_dir erm-sma_resnet50/pacs --hparams '{"num_workers": 1, "batch_size": 128}'
 ```
 
+## Citation
+If you use our work, please cite us:
 
+```
+@article{arpit2021ensemble,
+  title={Ensemble of Averages: Improving Model Selection and Boosting Performance in Domain Generalization},
+  author={Arpit, Devansh and Wang, Huan and Zhou, Yingbo and Xiong, Caiming},
+  journal={arXiv preprint arXiv:2110.10832},
+  year={2021}
+}
+```
+
+## License
+This repository is released under the MIT License. See [this](https://github.com/salesforce/ensemble-of-averages/blob/main/LICENSE) for details.
