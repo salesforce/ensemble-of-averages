@@ -22,7 +22,7 @@ This repository is built upon the [DomainBed](https://github.com/facebookresearc
 ### Simple Moving Average (SMA):
 First we train the models with our SMA protocol.
   
-All experiments below use the ImageNet pre-trained ResNet-50 architecture, specified as `resnet50` in the command using the `arch` hyper-parameter. Other supported options include `resnext50_swsl` and `regnety_16gf` corresponding to weakly-supervised pre-trained models `ResNeXt-50 32x4d` from [Yalniz et al](https://arxiv.org/pdf/1905.00546), and `RegNetY-GF` from [Singh et al](https://arxiv.org/pdf/2201.08371.pdf) respectively.
+All experiments below use the ImageNet pre-trained ResNet-50 architecture, specified as `resnet50` in the command using the `arch` hyper-parameter. Other supported options include `resnext50_swsl` and `regnety_16gf` corresponding to weakly-supervised pre-trained models `ResNeXt-50 32x4d` from [Yalniz et al](https://arxiv.org/pdf/1905.00546), and `RegNetY-16GF` from [Singh et al](https://arxiv.org/pdf/2201.08371.pdf) respectively.
   
 PACS:
 ```
@@ -54,8 +54,10 @@ We now use the best SMA models saved from the above runs (using in-domain valida
 
 TIP: Use larger values of `num_workers` and `batch_size` for faster runtime.
 
+PACS (note that the `output_dir` argument is same as the value used above in the SMA experiment for PACS dataset):
+
 ```
-python -m domainbed.EoA --data_dir /export/share/datasets/vision/domain-gen/PACS/kfold/ --dataset PACS --output_dir erm-sma_resnet50/pacs --hparams '{"num_workers": 1, "batch_size": 128}'
+python -m domainbed.EoA --data_dir path/to/data --dataset PACS --output_dir erm-sma_resnet50/pacs --hparams '{"num_workers": 1, "batch_size": 128}'
 ```
 
 ## Citation
