@@ -57,7 +57,7 @@ TIP: Use larger values of `num_workers` and `batch_size` for faster runtime.
 PACS (note that the `output_dir` argument is same as the value used above in the SMA experiment for PACS dataset):
 
 ```
-python -m domainbed.EoA --data_dir path/to/data --dataset PACS --output_dir erm-sma_resnet50/pacs --hparams '{"num_workers": 1, "batch_size": 128}'
+python -m domainbed.EoA --data_dir path/to/data --dataset PACS --output_dir erm-sma_resnet50/pacs --hparams '{"num_workers": 1, "batch_size": 128, "arch": "resnet50"}'
 ```
 
 ## Citation
