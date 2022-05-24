@@ -14,6 +14,7 @@ import time
 class Algorithm(torch.nn.Module):
 	def __init__(self, input_shape, hparams, num_classes):
 		super(Algorithm, self).__init__()
+		self.hparams = hparams
 		self.featurizer = networks.Featurizer(input_shape, hparams)
 		self.classifier = networks.Classifier(
 			self.featurizer.n_outputs,
@@ -36,7 +37,10 @@ class Algorithm(torch.nn.Module):
 		self.network_sma = torch.nn.parallel.DataParallel(self.network_sma).cuda()
 		
 	def predict(self, x):
-		return self.network_sma(x)
+		if self.hparams['SMA']:
+			return self.network_sma(x)
+		else:
+			return self.network(x)
 
 def accuracy(models, loader):
 	correct = 0
@@ -138,6 +142,7 @@ def get_ensemble_test_acc(exp_path, nenv, dataset_name, data_dir, hparams, force
 parser = argparse.ArgumentParser(description='Ensemble of Averages')
 parser.add_argument('--data_dir', type=str)
 parser.add_argument('--dataset', type=str, default="PACS")
+parser.add_argument('--arch', type=str, default="resnet50")
 parser.add_argument('--output_dir', type=str, help='the experiment directory where the results of domainbed.scripts.sweep were saved')
 parser.add_argument('--hparams', type=str, help='JSON-serialized hparams dict')
 args = parser.parse_args()
@@ -149,7 +154,7 @@ elif dataset_name=='DomainNet':
 	nenv = 6
 
 data_dir= args.data_dir
-hparams = {'data_augmentation': False, "nonlinear_classifier": False, "resnet_dropout": 0, "arch": "resnet50", "batch_size": 64, "num_workers":1}
+hparams = {'data_augmentation': False, "nonlinear_classifier": False, "resnet_dropout": 0, "arch": args.arch, "batch_size": 64, "num_workers":1, "SMA": True}
 if args.hparams:
 	hparams.update(json.loads(args.hparams))
 
