@@ -7,4 +7,4 @@ torch==1.7.1
 tqdm==4.62.2
 backpack==0.1
 parameterized==0.8.1
-Pillow==9.0.1
+Pillow==9.3.0
